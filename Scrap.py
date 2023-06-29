@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
-from openpyxl import Workbook
+from oauth2client.service_account import ServiceAccountCredentials
+import gspread
+from datetime import date
 
 def html_code(url):
     headers = {
@@ -50,20 +52,34 @@ while True:
 
 
 print(reviews)
-# Create a new workbook and select the active sheet
-workbook = Workbook()
-sheet = workbook.active
+# Define the scope and credentials for Google Sheets API
+scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+credentials = ServiceAccountCredentials.from_json_keyfile_name(r'C:\Users\faroo\Downloads\youtube0011-391306-e2aaaf87f3f1.json', scope)
 
-# Write the headers to the sheet
-headers = ['Rating', 'Review', 'Name', 'Date', 'Review Description', 'Location']
-sheet.append(headers)
+# Authenticate and access the Google Sheets API
+client = gspread.authorize(credentials)
 
-# Write the reviews to the sheet
-for review in reviews:
-    row_data = [review['Rating'], review['Review'], review['Name'], review['Date'], review['Review Description'], review['Location']]
-    sheet.append(row_data)
+# Open the existing Google Sheets spreadsheet
+spreadsheet = client.open_by_url('https://docs.google.com/spreadsheets/d/14S7YUe1x24jqoFwjQkej6lh7zJrHMr6ImJ8eDErS3PU/edit#gid=0')
 
-# Save the workbook to an Excel file
-workbook.save('youtube.xlsx')
+# Set the sheet name as the current date
+today = date.today()
+new_sheet_name = today.strftime("%d-%m-%Y")
 
-print("Reviews saved to youtube.xlsx")
+# Create a new sheet
+new_worksheet = spreadsheet.add_worksheet(title=new_sheet_name, rows="100", cols="20")
+
+# Select the new sheet
+sheet = spreadsheet.worksheet(new_sheet_name)
+
+# Create a new list with the header row included
+header_row = ['Rating', 'Review', 'Name', 'Date', 'Review Description', 'Location']
+data_list = [header_row] + [[review[col] for col in header_row] for review in reviews]
+
+# Clear the existing values in the sheet
+sheet.clear()
+
+# Append the data list to the Google Sheets
+sheet.append_rows(data_list)
+
+print("Reviews saved to Google Sheets.")
