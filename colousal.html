@@ -1,0 +1,95 @@
+<div class="custom-container">
+    <div class="custom-row">
+        <div class="custom-item">
+            <img src="https://cdn.shopify.com/s/files/1/0714/2634/3194/files/Free_Shipping.png?v=1699949511" class="custom-img" width="50%" />
+            <span class="custom-text">Free Shipping</span>
+        </div>
+        <div class="custom-item">
+            <img src="https://cdn.shopify.com/s/files/1/0714/2634/3194/files/Fast_Delivery.png?v=1699949680" class="custom-img" width="50%" />
+            <span class="custom-text">Fast delivery</span>
+        </div>
+    </div>
+    <div class="custom-row">
+        <div class="custom-item">
+            <img src="https://cdn.shopify.com/s/files/1/0714/2634/3194/files/Secure_Payments.png?v=1699949680" class="custom-img" width="50%" />
+            <span class="custom-text">Secure Payment</span>
+        </div>
+        <div class="custom-item">
+            <img src="https://cdn.shopify.com/s/files/1/0714/2634/3194/files/Easy_Returns.png?v=1699949679" class="custom-img" width="50%" />
+            <span class="custom-text">Easy Returns</span>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Default styles for larger screens */
+    .custom-container {
+        max-width: none;
+        padding: none;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0px;
+        border: 0px none rgb(29, 33, 54);
+        font: 16px / 20px Roboto, sans-serif;
+        vertical-align: baseline;
+    }
+
+    .custom-row {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0px;
+        padding: 0px;
+        border: 0px none rgb(29, 33, 54);
+        font: 16px / 20px Roboto, sans-serif;
+        vertical-align: baseline;
+        flex-wrap: wrap; /* Allow items to wrap onto the next line */
+    }
+
+    .custom-item {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0px;
+        padding: 0px;
+        border: 0px none rgb(29, 33, 54);
+        font: 16px / 20px Roboto, sans-serif;
+        vertical-align: baseline;
+        width: 50%; /* Each item takes 50% of the row */
+        box-sizing: border-box;
+        margin-bottom: 20px; /* Increased space between items */
+    }
+
+    .custom-img {
+        box-sizing: border-box;
+        margin: 0px;
+        padding: 0px;
+        border: 0px none rgb(29, 33, 54);
+        font: 16px / 20px Roboto, sans-serif;
+        vertical-align: baseline;
+        max-width: 100%; /* Make sure images don't exceed their container */
+    }
+
+    .custom-text {
+        box-sizing: border-box;
+        font-size: 14px;
+        font-weight: 700;
+        margin-left: 10px;
+        margin: 0px 0px 0px 10px;
+        padding: 0px;
+        border: 0px none rgb(29, 33, 54);
+        vertical-align: baseline;
+    }
+
+    /* Media query for mobile view */
+    @media only screen and (max-width: 600px) {
+        .custom-container {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+</style>
